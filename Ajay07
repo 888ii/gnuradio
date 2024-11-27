@@ -1,0 +1,37 @@
+clc;
+//Generate carrier signal 
+fc=5000;
+Ac=9;
+t=linspace(0,10*(10^(-3)),500);
+Vc=Ac*sin(((2*%pi)*fc)*t);
+subplot(311)
+plot(t,Vc)
+title('Carrier-wave');
+xlabel('time-s'); ylabel ('amplitude')
+
+//generate modulating signal
+fm=500;
+am=4.5;
+vm=am*sin(((2*%pi)*fm)*t);
+subplot(312)
+plot(t,vm)
+title('modulating-wave');
+xlabel('time-s');
+ylabel('amplitude');
+// generate modulated signal with index modulation m = 0.5
+
+m = am/Ac;
+
+Vt=(Ac*(1+m*sin(((2*%pi)*fm)*t))).*sin(((2*%pi)*fc)*t);
+
+subplot(313)
+
+plot(t,Vt)
+
+title('Modulated-wave');
+
+xlabel('Time - s');
+
+ylabel('Amplitude');
+
+disp(m);
